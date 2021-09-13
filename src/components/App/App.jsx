@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
-import { SearchBar } from './Searchbar/Searchbar';
+import { SearchBar } from '../Searchbar/Searchbar';
 import { Container } from '../Container/Container';
 import { fetchImages } from '../../services/api';
 import { ImageGallery } from '../ImageGallery/ImageGallery';

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Overlay, ModalImg } from './modal';
 
-export default class Modal extends Component {
+export class Modal extends Component {
   componentDidMount() {
     window.addEventListener('keydown', this.hendelKeyDown);
   }
