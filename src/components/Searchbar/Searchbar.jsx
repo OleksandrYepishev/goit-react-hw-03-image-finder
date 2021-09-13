@@ -1,4 +1,4 @@
-import { Serchbar } from './Searchbar';
+import { Serchbar } from './Searchbar.styled';
 
 export const SearchBar = ({ onSearch }) => {
   const handleSearch = e => {

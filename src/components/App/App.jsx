@@ -7,7 +7,7 @@ import { fetchImages } from '../../services/api';
 import { ImageGallery } from '../ImageGallery/ImageGallery';
 import { Button } from '../Button/Button.jsx';
 import { Spinner } from '../Loader/Loader';
-import Modal from '../Modal/modal';
+import { Modal } from '../Modal/modal';
 
 export class App extends Component {
   state = {

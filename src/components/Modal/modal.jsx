@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Overlay, ModalImg } from './modal';
+import { Overlay, ModalImg } from './modal.styled';
 
 export class Modal extends Component {
   componentDidMount() {

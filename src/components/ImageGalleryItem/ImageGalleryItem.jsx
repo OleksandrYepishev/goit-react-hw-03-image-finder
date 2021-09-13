@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { ImGItem, Image } from './ImageGalleryItem';
+import { ImGItem, Image } from './ImageGalleryItem.styled';
 
 export const ImageGalleryItem = ({ id, webformatURL, tags, onClick }) => (
   <ImGItem key={id} onClick={onClick}>
