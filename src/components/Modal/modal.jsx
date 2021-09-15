@@ -3,13 +3,13 @@ import { Overlay, ModalImg } from './modal.styled';
 
 export class Modal extends Component {
   componentDidMount() {
-    window.addEventListener('keydown', this.hendelKeyDown);
+    window.addEventListener('keydown', this.handleKeyDown);
   }
   componentWillUnmount() {
-    window.removeEventListener('keydown', this.hendelKeyDown);
+    window.removeEventListener('keydown', this.handleKeyDown);
   }
 
-  hendelKeyDown = e => {
+  handleKeyDown = e => {
     if (e.code === 'Escape') {
       this.props.onClose();
     }

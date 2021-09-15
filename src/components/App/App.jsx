@@ -7,7 +7,8 @@ import { fetchImages } from '../../services/api';
 import { ImageGallery } from '../ImageGallery/ImageGallery';
 import { Button } from '../Button/Button.jsx';
 import { Spinner } from '../Loader/Loader';
-import { Modal } from '../Modal/modal';
+import { SpinnerContainer } from '../Loader/Loader.styled';
+import { Modal } from '../Modal/Modal';
 
 export class App extends Component {
   state = {
@@ -20,17 +21,19 @@ export class App extends Component {
 
   async componentDidUpdate(_, prevState) {
     const { imageName, page } = this.state;
-    const shouldFetch = prevState.imageName !== imageName && imageName !== '';
+    const shouldFetch =
+      (prevState.imageName !== imageName && imageName !== '') ||
+      prevState.page !== page;
 
     if (imageName === '') {
       return toast.error('U need to write a name of image!');
     }
 
-    if (shouldFetch || prevState.page !== page) {
+    if (shouldFetch) {
       try {
-        this.setState({ status: 'pending' });
+        this.setState({ reqStatus: 'pending' });
         const images = await fetchImages(imageName, page);
-        this.setState({ status: 'resolved' });
+        this.setState({ reqStatus: 'resolved' });
 
         if (images.length === 0) {
           return toast.error(`there is no image with that name  ${imageName}`);
@@ -41,7 +44,7 @@ export class App extends Component {
           behavior: 'smooth',
         });
       } catch (error) {
-        this.setState({ status: 'rejected' });
+        this.setState({ reqStatus: 'rejected' });
       }
     }
   }
@@ -65,13 +68,17 @@ export class App extends Component {
   };
 
   render() {
-    const { images, status, selectedImage } = this.state;
-    const showButton = images.length > 0;
+    const { images, reqStatus, selectedImage } = this.state;
+    const showButton = images.length >= 12 && reqStatus === 'resolved';
 
     return (
       <Container>
         <SearchBar onSearch={this.handleFormSubmit} />
-        {status === 'pending' && <Spinner />}
+        {reqStatus === 'pending' && (
+          <SpinnerContainer>
+            <Spinner />
+          </SpinnerContainer>
+        )}
         <ImageGallery images={images} onSelect={this.handleSelectedImg} />
         {showButton && <Button onClick={this.handleBtnLoadMore} />}
         {selectedImage && (
